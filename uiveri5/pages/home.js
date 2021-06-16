@@ -14,6 +14,28 @@ module.exports = createPageObjects({
   Home: {
     actions: {
       // add action functions here
+      iSearchForProduct: function () {
+        element(by.control({
+            id: "container-cart---homeView--searchField",
+            interaction: {
+                idSuffix: "I"
+            }
+        })).sendKeys("Watch");
+      },
+
+      iSelectTheFirstProduct: function () {
+        element(by.control({
+          controlType: "sap.m.ObjectListItem",
+          viewId: "container-cart---homeView",
+          bindingPath: {
+              path: "/Products('HT-6130')",
+              propertyPath: "PictureUrl"
+          },
+          interaction: {
+              idSuffix: "content"
+          }
+        })).click();
+      }
       
     },
     assertions: {
@@ -24,7 +46,17 @@ module.exports = createPageObjects({
                 viewId: "container-cart---homeView",
             }));
             expect(list.count()).toBe(16);
-        }
+        },
+
+        theProductListShouldBeFiltered: function () {
+          var list = element.all(by.control({
+              controlType: "sap.m.ObjectListItem",
+              viewId: "container-cart---homeView"
+              
+          }));
+          var firstItem = list.get(0);
+          expect(firstItem.asControl().getProperty('title')).toBe('Flat Watch HD32')
+      }
       
     }
   }
