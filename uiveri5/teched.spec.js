@@ -41,20 +41,4 @@ describe("teched", function () {
       Then.onTheProductPage.theProductCouldBeOrdered();
     });
 
-
-
-
-
-  it("should see the Home page", function () {
-    // call the page object's actions and assertions:
-    // When.onTheHomePage.iDoSomething();
-    // Then.onTheHomePage.iAssertSomething();
-  });
-
-  it("should see the Product page", function () {
-    // call the page object's actions and assertions:
-    // When.onTheProductPage.iDoSomething();
-    // Then.onTheProductPage.iAssertSomething();
-  });
-
 });
